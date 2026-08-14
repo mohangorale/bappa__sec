@@ -14,26 +14,27 @@ type ScheduleItem = {
 }
 
 const schedule: ScheduleItem[] = [
-  { title: 'मूर्ती स्थापना', date: '१४ सप्टेंबर २०२६', time: 'सकाळी १०:०० वाजता', image: '/assets/sthapana-opt.webp' },
-  { title: 'सकाळची आरती', date: 'दररोज', time: 'सकाळी ८:०० वाजता', image: '/assets/aarti-opt.webp' },
-  { title: 'संध्याकाळची आरती', date: 'दररोज', time: 'संध्याकाळी ७:३० वाजता', image: '/assets/aarti-opt.webp' },
-  { title: 'सत्यनारायण पूजा', date: '२० सप्टेंबर २०२६', time: 'सकाळी १०:३० वाजता', image: '/assets/atharvshish-opt.webp' },
-  { title: 'महाप्रसाद', date: '२० सप्टेंबर २०२६', time: 'रात्री ८:३० वाजता', image: '/assets/mahaprasad-opt.webp' },
-  { title: 'सांस्कृतिक कार्यक्रम', date: '१५ ते २२ सप्टेंबर २०२६', time: 'सायंकाळी ६:०० वाजता', image: '/assets/snehbhet-opt.webp' },
-  { title: 'विसर्जन', date: '२३ सप्टेंबर २०२६', time: 'सायंकाळी ५:०० वाजता', image: '/assets/visarjan-opt.webp' },
+  { title: 'गणेश स्थापना', date: '१४ सप्टेंबर', time: 'सकाळी १०:०० वा.', image: '/assets/sthapana-opt.webp' },
+  { title: 'आरती व पूजन', date: 'दररोज', time: '१०:०० व ७:००', image: '/assets/aarti-opt.webp' },
+  { title: 'अथर्वशीर्ष', date: 'दररोज', time: 'सायं ६:३० वा.', image: '/assets/atharvshish-opt.webp' },
+  { title: 'महाप्रसाद', date: '१५ सप्टेंबर', time: 'दुपारी १२:३०', image: '/assets/mahaprasad-opt.webp' },
+  { title: 'स्नेहभेट', date: 'संपूर्ण उत्सव', time: 'परिवार व मित्र', image: '/assets/snehbhet-opt.webp' },
+  { title: 'विसर्जन', date: '१८ सप्टेंबर', time: 'सायं ५:०० वा.', image: '/assets/visarjan-opt.webp' },
 ]
 
 const members: Array<[string, string]> = [
-  ['श्री. श्रीकांत पाटील', '/assets/family-1.webp'],
-  ['सौ. अंजली पाटील', '/assets/family-2.webp'],
-  ['चि. ओम पाटील', '/assets/family-3.webp'],
-  ['चि. गौरी पाटील', '/assets/family-4.webp'],
+  ['श्री. रमेश देशपांडे', '/assets/family-1-opt.webp'],
+  ['सौ. रेखा देशपांडे', '/assets/family-2-opt.webp'],
+  ['कु. स्वरा देशपांडे', '/assets/family-4-opt.webp'],
+  ['चि. अथर्व देशपांडे', '/assets/family-3-opt.webp'],
 ]
 
 const blessings = [
+  'गणरायाच्या कृपेने सर्वांच्या जीवनात सुख, समृद्धी व आनंद नांदो.',
+  'गणपती बाप्पा आपल्या जीवनात सुख, समृद्धी आणि आनंद घेऊन येवो.',
+  'बाप्पाचे आशीर्वाद आपल्या परिवारावर सदैव राहो.',
   'मंगलमूर्ती मोरया! आपल्या सर्व इच्छा पूर्ण होवोत.',
-  'बाप्पांचे आशीर्वाद सदैव तुमच्या परिवारावर राहो.',
-  'प्रत्येक नव्या प्रारंभाला विघ्नहर्त्याचे मंगल आशीर्वाद लाभोत.',
+  'गणराय आपल्या घरात आनंद आणि शांतता घेऊन येवो.',
 ]
 
 const DateIcon = () => (
@@ -167,11 +168,11 @@ function App() {
           <div className="hero__content">
             <p className="hero__glyph">॥ श्री गणेशाय नमः ॥</p>
             <img className="hero__ornament" src="/assets/divider-1-opt.webp" alt="" />
-            <p className="hero__family">पाटील परिवाराकडून</p>
+            <p className="hero__family">देशपांडे परिवाराकडून</p>
             <img className="hero__title" src="/assets/hero-text-opt.webp" alt="बाप्पांचे आगमन" />
             <img className="divider" src="/assets/divider-2-opt.webp" alt="" />
             <p className="hero__message">आमच्या घरी गणरायांचे<br />आगमन होत आहे...</p>
-            <p className="hero__welcome">आपणास सस्नेह निमंत्रण !</p>
+            <p className="hero__welcome">आपले सहर्ष स्वागत !</p>
             <img className="hero__murti" src="/assets/murti-opt.webp" alt="Lord Ganesha murti" />
           </div>
 
@@ -184,21 +185,21 @@ function App() {
                 <DateIcon />
                 <div className="hero__date-text">
                   <span className="hero__date-label">तारीख</span>
-                  <span className="hero__date-value">१४–२३ सप्टेंबर २०२६</span>
+                  <span className="hero__date-value">१४–१८ सप्टेंबर</span>
                 </div>
               </div>
               <div className="hero__date-item">
                 <TimeIcon />
                 <div className="hero__date-text">
                   <span className="hero__date-label">वेळ</span>
-                  <span className="hero__date-value">सकाळी १०:०० वाजता</span>
+                  <span className="hero__date-value">सकाळी १० वा.</span>
                 </div>
               </div>
               <div className="hero__date-item">
                 <VenueIcon />
                 <div className="hero__date-text">
                   <span className="hero__date-label">ठिकाण</span>
-                  <span className="hero__date-value">पाटील निवास</span>
+                  <span className="hero__date-value">देशपांडे निवास</span>
                 </div>
               </div>
             </div>
@@ -218,7 +219,7 @@ function App() {
               <img className="plaque-flower plaque-left" src="/assets/flower-opt.webp" alt="" />
               <div className="plaque-content">
                 <span className="plaque-subtitle">परिवार</span>
-                <h3>पाटील परिवार</h3>
+                <h3>देशपांडे परिवार</h3>
               </div>
               <img className="plaque-flower plaque-right" src="/assets/flower-opt.webp" alt="" />
             </div>
@@ -273,8 +274,8 @@ function App() {
           </div>
 
           <div className="invite-message">
-            <p>आपण व आपल्या परिवारास</p>
-            <p>सस्नेह निमंत्रण !</p>
+            <p>गणरायाच्या आगमन सोहळ्यास आपली</p>
+            <p>उपस्थिती आम्हांस आनंददायी ठरेल.</p>
           </div>
           <img className="bottom-ornament" src="/assets/divider-2-opt.webp" alt="" />
 
@@ -348,21 +349,21 @@ function App() {
             </p>
 
             <div className="featured-photo">
-              <img src="/assets/gallery-1.webp" alt="बाप्पाचे आगमन - श्री गणरायाचे घरामध्ये मंगल आगमन" />
+              <img src="/assets/gallery-1-opt.webp" alt="Ganpati celebration preparation" />
             </div>
 
             <div className="gallery-grid">
               <div className="gallery-card tilt-left">
-                <img src="/assets/gallery-2.webp" alt="पुष्पमाला विणणे - झेंडूच्या फुलांची तयारी" />
+                <img src="/assets/gallery-2-opt.webp" alt="Ganpati celebration preparation" />
               </div>
               <div className="gallery-card tilt-right">
-                <img src="/assets/gallery-3.webp" alt="पूजा थाळी आणि उकडीचे मोदक - मंगल कलश" />
+                <img src="/assets/gallery-3-opt.webp" alt="Ganpati celebration preparation" />
               </div>
               <div className="gallery-card tilt-right">
-                <img src="/assets/gallery-4.webp" alt="मखर सजावट - मखराची आरास व शोभिवंत सजावट" />
+                <img src="/assets/gallery-4-opt.webp" alt="Ganpati celebration preparation" />
               </div>
               <div className="gallery-card tilt-left">
-                <img src="/assets/gallery-5.webp" alt="परिवाराची महाआरती आणि दीपप्रज्वलन" />
+                <img src="/assets/gallery-5-opt.webp" alt="Ganpati celebration preparation" />
               </div>
             </div>
 
@@ -376,24 +377,26 @@ function App() {
         <section className="location-section">
           <div className="location-container">
             <span className="location-label">LOCATION</span>
-            <h2 className="location-title">कार्यक्रम स्थळ</h2>
+            <h2 className="location-title">ठिकाण</h2>
             <img className="location-divider" src="/assets/divider-2-opt.webp" alt="" />
-            <p className="location-subtitle">गणरायाच्या दर्शनासाठी<br />आपले सहर्ष स्वागत आहे</p>
+            <p className="location-subtitle">गणरायाच्या आगमन सोहळ्यास<br />आपले सहर्ष स्वागत आहे</p>
 
             <div className="location-card">
               <div className="map-container">
                 <iframe
-                  title="Patil residence map"
-                  src="https://www.google.com/maps?q=Mumbai%2C%20Maharashtra&output=embed"
+                  title="Deshpande residence map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15087.840252981321!2d72.83266058866177!3d19.021481400909252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cedb0ea0cd0f%3A0x428a465039995bd0!2sDadar%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1781515306818!5m2!1sen!2sin"
                   loading="lazy"
                 />
               </div>
               <div className="location-content">
-                <h3>पाटील निवास</h3>
+                <h3>देशपांडे निवास</h3>
                 <p className="location-address">
-                  मुंबई, महाराष्ट्र
+                  फ्लॅट नं. ४०२,<br />
+                  श्री गणेशा अपार्टमेंट्स, शिवाजीनगर<br />
+                  पुणे - ४११००५
                 </p>
-                <a className="maps-button" href="https://www.google.com/maps/search/?api=1&query=Mumbai%2C%20Maharashtra" target="_blank" rel="noreferrer">
+                <a className="maps-button" href="https://maps.google.com" target="_blank" rel="noreferrer">
                   Open Maps <span>↗</span>
                 </a>
                 <p className="location-note">आपल्या सहकुटुंब उपस्थितीने<br />उत्सवाची शोभा वाढेल</p>
@@ -418,7 +421,7 @@ function App() {
             <div className="footer-blessing">
               <h2>आपली उपस्थिती हेच<br />आमच्यासाठी बाप्पांचे खरे<br />आशीर्वाद आहेत.</h2>
             </div>
-            <p className="footer-family">— पाटील परिवार</p>
+            <p className="footer-family">— देशपांडे परिवार</p>
             <p className="footer-subtext">
               गणरायाच्या चरणी आपल्या सहकुटुंब स्वागताची विनंती.
             </p>
