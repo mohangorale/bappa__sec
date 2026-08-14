@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Asar&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi:ital,wght@0,400;0,700,1,400&family=Annapurna+SIL:wght@400;700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Noto+Serif+Devanagari:wght@100..900&family=Sumana:wght@400;700&display=swap');
+
+:root {
+  font-family: 'Asar', 'Noto Serif Devanagari', serif;
+  color: #6a4825;
+  background: #e9ddca;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html { overflow-x: hidden; overflow-y: auto; scroll-behavior: smooth; }
+body { min-height: 100%; margin: 0; overflow-x: hidden; overflow-y: visible; }
+button, a { font: inherit; -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
