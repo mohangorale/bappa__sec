@@ -61,8 +61,13 @@ const DATA = {
     label: 'PREPARATION MOMENTS',
     title: 'आगमनाची तयारी',
     subtitle: 'गणरायाच्या स्वागतासाठी\nप्रेमाने सजवलेले काही खास क्षण',
-    featuredImage: 'gallery-1-opt.webp',
-    images: ['gallery-2-opt.webp', 'gallery-3-opt.webp', 'gallery-4-opt.webp', 'gallery-5-opt.webp'],
+    featuredImage: { file: 'gallery-1.webp', alt: 'बाप्पाचे आगमन - श्री गणरायाचे घरामध्ये मंगल आगमन' },
+    images: [
+      { file: 'gallery-2.webp', alt: 'पुष्पमाला विणणे - झेंडूच्या फुलांची तयारी' },
+      { file: 'gallery-3.webp', alt: 'पूजा थाळी आणि उकडीचे मोदक - मंगल कलश' },
+      { file: 'gallery-4.webp', alt: 'मखर सजावट - मखराची आरास व शोभिवंत सजावट' },
+      { file: 'gallery-5.webp', alt: 'परिवाराची महाआरती आणि दीपप्रज्वलन' },
+    ],
     message: 'या तयारीमागील प्रत्येक क्षण गणरायाच्या\nस्वागतासाठी भक्ती आणि प्रेमाने सजवला आहे.',
   },
   location: {
@@ -443,13 +448,13 @@ function Gallery() {
         <p className="gallery-subtitle" dangerouslySetInnerHTML={{ __html: gallery.subtitle.replace(/\n/g, '<br />') }} />
 
         <div className="featured-photo">
-          <img src={`/assets/${gallery.featuredImage}`} alt="" />
+          <img src={`/assets/${gallery.featuredImage.file}`} alt={gallery.featuredImage.alt} />
         </div>
 
         <div className="gallery-grid">
           {gallery.images.map((img, i) => (
             <div key={i} className={`gallery-card ${i % 2 === 0 ? 'tilt-left' : 'tilt-right'}`}>
-              <img src={`/assets/${img}`} alt="" />
+              <img src={`/assets/${img.file}`} alt={img.alt} />
             </div>
           ))}
         </div>
