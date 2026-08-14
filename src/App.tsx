@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -106,37 +105,41 @@ function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComp
 
   return (
     <div className="curtain-container" style={{ pointerEvents: isOpen ? 'none' : 'auto' }} aria-hidden="true">
-      <motion.div
+      <div
         className="curtain-panel left"
-        initial={{ x: 0 }}
-        animate={isOpen ? { x: '-100%' } : { x: 0 }}
-        transition={{ delay: 0.5, duration: 1.3, ease: [0.77, 0, 0.175, 1] }}
+        style={{
+          transform: isOpen ? 'translateX(-100%)' : 'translateX(0)',
+          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
+        }}
       >
         <div className="curtain-panel-decor" />
         <div className="curtain-decor-line" />
         <div className="curtain-decor-outer" />
         <div className="curtain-corner curtain-corner--top" />
         <div className="curtain-corner curtain-corner--bottom" />
-      </motion.div>
+      </div>
 
-      <motion.div
+      <div
         className="curtain-panel right"
-        initial={{ x: 0 }}
-        animate={isOpen ? { x: '100%' } : { x: 0 }}
-        transition={{ delay: 0.5, duration: 1.3, ease: [0.77, 0, 0.175, 1] }}
+        style={{
+          transform: isOpen ? 'translateX(100%)' : 'translateX(0)',
+          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
+        }}
       >
         <div className="curtain-panel-decor" />
         <div className="curtain-decor-line" />
         <div className="curtain-decor-outer" />
         <div className="curtain-corner curtain-corner--top" />
         <div className="curtain-corner curtain-corner--bottom" />
-      </motion.div>
+      </div>
 
-      <motion.div
+      <div
         className="curtain-center-content"
-        initial={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-        animate={isOpen ? { opacity: 0, scale: 0.85, x: '-50%', y: '-50%' } : { opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-        transition={isOpen ? { duration: 0.5, ease: 'easeIn' } : { duration: 0 }}
+        style={{
+          opacity: isOpen ? 0 : 1,
+          transform: isOpen ? 'translate(-50%, -50%) scale(0.85)' : 'translate(-50%, -50%) scale(1)',
+          transition: isOpen ? 'opacity 0.5s ease-in, transform 0.5s ease-in' : 'none',
+        }}
       >
         <div className="curtain-seal-ring" />
         <div className="curtain-seal-ring-inner" />
@@ -156,7 +159,7 @@ function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComp
           <span className="curtain-seal-text-en">Tap To Open</span>
           <span className="curtain-seal-shine" />
         </button>
-      </motion.div>
+      </div>
     </div>
   )
 }
@@ -165,14 +168,15 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
   const { hero } = DATA
   return (
     <section className="hero" id="hero">
-      <motion.img
+      <img
         className="hero__top-layer"
         src="/assets/top-layer-opt.webp"
         alt=""
         aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: introStarted ? 1 : 0 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          opacity: introStarted ? 1 : 0,
+          transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
       />
       <button
         className={`hero__music ${isMusicPlaying ? 'is-playing' : ''}`}
@@ -184,24 +188,28 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         <span id="musicIcon">{isMusicPlaying ? '♫' : '♪'}</span>
       </button>
 
-      <motion.div
+      <div
         className="hero__logo"
         aria-hidden="true"
-        initial={{ opacity: 0, y: -10, x: '-50%' }}
-        animate={introStarted ? { opacity: 1, y: 0, x: '-50%' } : { opacity: 0, y: -10, x: '-50%' }}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0, 0.55, 0.45, 1] }}
+        style={{
+          opacity: introStarted ? 1 : 0,
+          transform: introStarted ? 'translate(-50%, 0)' : 'translate(-50%, -10px)',
+          transition: 'opacity 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.1s, transform 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.1s',
+        }}
       >
         <img src="/assets/logo-opt.webp" alt="" />
         <p className="hero__tiny hero__tiny--ganesh" style={{ margin: 0, fontFamily: '"Tiro Devanagari Marathi", "Noto Serif Devanagari", serif', fontSize: 'clamp(0.95rem, 4vw, 1.08rem)', color: 'var(--ink)' }}>
           ॥ श्री गणेशाय नमः ॥
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
+      <div
         className="hero__content"
-        initial={{ opacity: 0, y: 30 }}
-        animate={introStarted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0, 0.55, 0.45, 1] }}
+        style={{
+          opacity: introStarted ? 1 : 0,
+          transform: introStarted ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.2s, transform 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.2s',
+        }}
       >
         <img className="divider divider--thin" src="/assets/divider-1-opt.webp" alt="" aria-hidden="true" />
         <p className="hero__family">{hero.family}</p>
@@ -210,7 +218,7 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         <p className="hero__message" dangerouslySetInnerHTML={{ __html: hero.message.replace(/\n/g, '<br />') }} />
         <p className="hero__welcome">{hero.welcome}</p>
         <img className="hero__murti" src="/assets/murti-opt.webp" alt="Lord Ganesha murti" />
-      </motion.div>
+      </div>
 
       <img className="hero__flower hero__flower--left" src="/assets/flower-opt.webp" alt="" aria-hidden="true" />
       <img className="hero__flower hero__flower--right" src="/assets/flower-opt.webp" alt="" aria-hidden="true" />
