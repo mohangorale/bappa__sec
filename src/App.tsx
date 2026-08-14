@@ -91,8 +91,35 @@ const DATA = {
   },
 }
 
+function useScrollReveal<T extends HTMLElement = HTMLElement>() {
+  const ref = useRef<T | null>(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            entry.target.setAttribute('data-revealed', 'true')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return ref
+}
+
 function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComplete?: () => void }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isOpening, setIsOpening] = useState(false)
   const [isRendered, setIsRendered] = useState(true)
 
   useEffect(() => {
@@ -106,15 +133,32 @@ function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComp
     }
   }, [isRendered, isOpen])
 
+  const handleOpen = () => {
+    if (isOpening) return
+    setIsOpening(true)
+    onOpenStart?.()
+    setTimeout(() => {
+      setIsOpen(true)
+    }, 400)
+    setTimeout(() => {
+      setIsRendered(false)
+      onComplete?.()
+    }, 2200)
+  }
+
   if (!isRendered) return null
 
   return (
-    <div className="curtain-container" style={{ pointerEvents: isOpen ? 'none' : 'auto' }} aria-hidden="true">
+    <div
+      className={`curtain-container ${isOpening ? 'curtain-opening' : ''}`}
+      style={{ pointerEvents: isOpening ? 'none' : 'auto' }}
+      aria-hidden="true"
+    >
       <div
         className="curtain-panel left"
         style={{
           transform: isOpen ? 'translateX(-100%)' : 'translateX(0)',
-          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
+          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.3s',
         }}
       >
         <div className="curtain-panel-decor" />
@@ -128,7 +172,7 @@ function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComp
         className="curtain-panel right"
         style={{
           transform: isOpen ? 'translateX(100%)' : 'translateX(0)',
-          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.5s',
+          transition: 'transform 1.3s cubic-bezier(0.77, 0, 0.175, 1) 0.3s',
         }}
       >
         <div className="curtain-panel-decor" />
@@ -141,25 +185,15 @@ function Curtain({ onOpenStart, onComplete }: { onOpenStart?: () => void; onComp
       <div
         className="curtain-center-content"
         style={{
-          opacity: isOpen ? 0 : 1,
-          transform: isOpen ? 'translate(-50%, -50%) scale(0.85)' : 'translate(-50%, -50%) scale(1)',
-          transition: isOpen ? 'opacity 0.5s ease-in, transform 0.5s ease-in' : 'none',
+          opacity: isOpening ? 0 : 1,
+          transform: isOpening ? 'translate(-50%, -50%) scale(0.82)' : 'translate(-50%, -50%) scale(1)',
+          filter: isOpening ? 'blur(2px)' : 'none',
+          transition: 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease',
         }}
       >
         <div className="curtain-seal-ring" />
         <div className="curtain-seal-ring-inner" />
-        <button
-          className="curtain-seal"
-          type="button"
-          onClick={() => {
-            setIsOpen(true)
-            onOpenStart?.()
-            setTimeout(() => {
-              setIsRendered(false)
-              onComplete?.()
-            }, 2500)
-          }}
-        >
+        <button className="curtain-seal" type="button" onClick={handleOpen} aria-label="Open invitation">
           <span className="curtain-seal-text-hi">गणपती नमः</span>
           <span className="curtain-seal-text-en">Tap To Open</span>
           <span className="curtain-seal-shine" />
@@ -180,7 +214,8 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         aria-hidden="true"
         style={{
           opacity: introStarted ? 1 : 0,
-          transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1)',
+          transform: introStarted ? 'translateY(0)' : 'translateY(-10px)',
+          transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       />
       <button
@@ -198,8 +233,8 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         aria-hidden="true"
         style={{
           opacity: introStarted ? 1 : 0,
-          transform: introStarted ? 'translate(-50%, 0)' : 'translate(-50%, -10px)',
-          transition: 'opacity 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.1s, transform 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.1s',
+          transform: introStarted ? 'translate(-50%, 0)' : 'translate(-50%, -15px)',
+          transition: 'opacity 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0.1s, transform 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0.1s',
         }}
       >
         <img src="/assets/logo-opt.webp" alt="" />
@@ -212,8 +247,8 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         className="hero__content"
         style={{
           opacity: introStarted ? 1 : 0,
-          transform: introStarted ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'opacity 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.2s, transform 0.7s cubic-bezier(0, 0.55, 0.45, 1) 0.2s',
+          transform: introStarted ? 'translateY(0)' : 'translateY(25px)',
+          transition: 'opacity 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0.25s, transform 0.8s cubic-bezier(0, 0.55, 0.45, 1) 0.25s',
         }}
       >
         <img className="divider divider--thin" src="/assets/divider-1-opt.webp" alt="" aria-hidden="true" />
@@ -222,7 +257,16 @@ function Hero({ isMusicPlaying, onToggleMusic, introStarted }: { isMusicPlaying:
         <img className="divider" src="/assets/divider-2-opt.webp" alt="" aria-hidden="true" />
         <p className="hero__message" dangerouslySetInnerHTML={{ __html: hero.message.replace(/\n/g, '<br />') }} />
         <p className="hero__welcome">{hero.welcome}</p>
-        <img className="hero__murti" src="/assets/murti-opt.webp" alt="Lord Ganesha murti" />
+        <img
+          className="hero__murti"
+          src="/assets/murti-opt.webp"
+          alt="Lord Ganesha murti"
+          style={{
+            opacity: introStarted ? 1 : 0,
+            transform: introStarted ? 'translate(-50%, 0) scale(1)' : 'translate(-50%, 20px) scale(0.96)',
+            transition: 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s',
+          }}
+        />
       </div>
 
       <img className="hero__flower hero__flower--left" src="/assets/flower-opt.webp" alt="" aria-hidden="true" />
@@ -249,6 +293,7 @@ function Nimantrak() {
   const { family } = DATA
   const prevRef = useRef<HTMLDivElement>(null)
   const nextRef = useRef<HTMLDivElement>(null)
+  const revealRef = useScrollReveal<HTMLElement>()
 
   let members = [...family.members]
   while (members.length < 6) {
@@ -256,7 +301,7 @@ function Nimantrak() {
   }
 
   return (
-    <section className="nimantrak-section">
+    <section className="nimantrak-section scroll-reveal" ref={revealRef}>
       <div className="custom-shape-divider-top-1781551738">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M0,0V6c0,21.6,291,111.46,741,110.26,445.39,3.6,459-88.3,459-110.26V0Z" className="shape-fill" stroke="#f7f0e4" strokeWidth="2" />
@@ -335,6 +380,7 @@ function Nimantrak() {
 function Utsav() {
   const { utsav } = DATA
   const timelineRef = useRef<HTMLDivElement>(null)
+  const revealRef = useScrollReveal<HTMLElement>()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -345,7 +391,7 @@ function Utsav() {
           }
         })
       },
-      { threshold: 0.15 },
+      { threshold: 0.15, rootMargin: '0px 0px -30px 0px' },
     )
 
     const items = timelineRef.current?.querySelectorAll('.timeline-item')
@@ -357,7 +403,7 @@ function Utsav() {
   }, [])
 
   return (
-    <section className="utsav-section">
+    <section className="utsav-section scroll-reveal" ref={revealRef}>
       <div className="utsav-header">
         <span className="section-label">{utsav.label}</span>
         <h2 className="utsav-title">{utsav.title}</h2>
@@ -393,6 +439,7 @@ function Blessings() {
   const [index, setIndex] = useState(0)
   const [fading, setFading] = useState(false)
   const [busy, setBusy] = useState(false)
+  const revealRef = useScrollReveal<HTMLElement>()
 
   const handleNext = () => {
     if (busy) return
@@ -403,12 +450,12 @@ function Blessings() {
       setFading(false)
       setTimeout(() => {
         setBusy(false)
-      }, 400)
-    }, 400)
+      }, 350)
+    }, 350)
   }
 
   return (
-    <section className="blessings-section">
+    <section className="blessings-section scroll-reveal" ref={revealRef}>
       <div className="blessings-container">
         <span className="blessings-label">{blessings.label}</span>
         <h2 className="blessings-title">{blessings.title}</h2>
@@ -422,9 +469,9 @@ function Blessings() {
             id="blessingText"
             className="blessing-text"
             style={{
-              transition: 'opacity 0.4s ease, transform 0.4s ease',
+              transition: 'opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
               opacity: fading ? 0 : 1,
-              transform: fading ? 'translateY(-8px)' : 'translateY(0)',
+              transform: fading ? 'translateY(-10px)' : 'translateY(0)',
             }}
           >
             {blessings.list[index]}
@@ -439,8 +486,10 @@ function Blessings() {
 
 function Gallery() {
   const { gallery } = DATA
+  const revealRef = useScrollReveal<HTMLElement>()
+
   return (
-    <section className="gallery-section">
+    <section className="gallery-section scroll-reveal" ref={revealRef}>
       <div className="gallery-container">
         <span className="gallery-label">{gallery.label}</span>
         <h2 className="gallery-title">{gallery.title}</h2>
@@ -470,8 +519,10 @@ function Gallery() {
 
 function Location() {
   const { location } = DATA
+  const revealRef = useScrollReveal<HTMLElement>()
+
   return (
-    <section className="location-section">
+    <section className="location-section scroll-reveal" ref={revealRef}>
       <div className="location-container">
         <span className="location-label">{location.label}</span>
         <h2 className="location-title">{location.title}</h2>
@@ -513,8 +564,10 @@ function Location() {
 
 function Footer() {
   const { footer } = DATA
+  const revealRef = useScrollReveal<HTMLElement>()
+
   return (
-    <footer className="ganpati-footer">
+    <footer className="ganpati-footer scroll-reveal" ref={revealRef}>
       <div className="footer-top-fade" />
       <div className="footer-content">
         <img src="/assets/flower-opt.webp" className="footer-flower footer-left" alt="" />
@@ -612,7 +665,7 @@ function App() {
           }
           setTimeout(() => {
             requestAnimationFrame(() => setIntroStarted(true))
-          }, 1400)
+          }, 1100)
         }}
       />
       <audio id="bgMusic" ref={audioRef} src={DATA.audio.path} loop preload="auto" />
