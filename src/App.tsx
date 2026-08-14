@@ -8,26 +8,26 @@ import './App.css'
 const DATA = {
   theme: 'ivoryGold',
   meta: {
-    title: 'Deshpande Ganapati Invitation',
+    title: 'पाटील परिवार गणेशोत्सव निमंत्रण',
     description: 'गणरायाच्या आगमनाचे सस्नेह आमंत्रण',
   },
   hero: {
-    family: 'देशपांडे परिवाराकडून',
+    family: 'पाटील परिवाराकडून',
     title: 'बाप्पांचे आगमन',
     message: 'आमच्या घरी गणरायांचे\nआगमन होत आहे...',
-    welcome: 'आपले सहर्ष स्वागत !',
+    welcome: 'आपणास सस्नेह निमंत्रण !',
   },
   family: {
     label: 'INVITING FAMILY',
     title: 'निमंत्रक',
-    plaqueTitle: 'देशपांडे परिवार',
+    plaqueTitle: 'पाटील परिवार',
     subtitle: 'गणरायाच्या आगमनाच्या या मंगल क्षणी आपण सर्वांनी उपस्थित राहून उत्सवाची शोभा वाढवावी.',
-    inviteMessage: 'गणरायाच्या आगमन सोहळ्यास आपली\nउपस्थिती आम्हांस आनंददायी ठरेल.',
+    inviteMessage: 'आपण व आपल्या परिवारास\nसस्नेह निमंत्रण !',
     members: [
-      { name: 'श्री. रमेश देशपांडे', image: 'family-1-opt.webp' },
-      { name: 'सौ. रेखा देशपांडे', image: 'family-2-opt.webp' },
-      { name: 'कु. स्वरा देशपांडे', image: 'family-4-opt.webp' },
-      { name: 'चि. अथर्व देशपांडे', image: 'family-3-opt.webp' },
+      { name: 'श्री. श्रीकांत पाटील', image: 'family-1-opt.webp' },
+      { name: 'सौ. अंजली पाटील', image: 'family-2-opt.webp' },
+      { name: 'चि. ओम पाटील', image: 'family-3-opt.webp' },
+      { name: 'चि. गौरी पाटील', image: 'family-4-opt.webp' },
     ],
   },
   utsav: {
@@ -69,7 +69,7 @@ const DATA = {
     label: 'LOCATION',
     title: 'ठिकाण',
     subtitle: 'गणरायाच्या आगमन सोहळ्यास\nआपले सहर्ष स्वागत आहे',
-    placeName: 'देशपांडे निवास',
+    placeName: 'पाटील निवास',
     address: 'फ्लॅट नं. ४०२,\nश्री गणेशा अपार्टमेंट्स, शिवाजीनगर\nपुणे - ४११००५',
     mapsLink: 'https://maps.google.com',
     mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15087.840252981321!2d72.83266058866177!3d19.021481400909252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cedb0ea0cd0f%3A0x428a465039995bd0!2sDadar%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1781515306818!5m2!1sen!2sin',
@@ -77,7 +77,7 @@ const DATA = {
   },
   footer: {
     blessing: 'आपली उपस्थिती हेच\nआमच्यासाठी बाप्पांचे खरे\nआशीर्वाद आहेत.',
-    familySignature: '— देशपांडे परिवार',
+    familySignature: '— पाटील परिवार',
   },
   audio: {
     path: '/assets/bgMusic.mp3',
