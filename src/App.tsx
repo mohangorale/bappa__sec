@@ -270,10 +270,11 @@ function Nimantrak() {
           modules={[Navigation]}
           navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
           onInit={(swiper) => {
-            // @ts-expect-error swiper internal
-            swiper.params.navigation.prevEl = prevRef.current
-            // @ts-expect-error swiper internal
-            swiper.params.navigation.nextEl = nextRef.current
+            const nav = swiper.params.navigation
+            if (nav && typeof nav === 'object') {
+              nav.prevEl = prevRef.current
+              nav.nextEl = nextRef.current
+            }
             swiper.navigation.init()
             swiper.navigation.update()
           }}
