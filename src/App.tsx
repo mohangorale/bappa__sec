@@ -422,7 +422,6 @@ function App() {
             <p className="footer-subtext">
               गणरायाच्या चरणी आपल्या सहकुटुंब स्वागताची विनंती.
             </p>
-            <small className="footer-credit">CRAFTED BY INVI DIGITALS</small>
           </div>
         </footer>
       </main>
