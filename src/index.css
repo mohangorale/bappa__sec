@@ -1,16 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Asar&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi:ital,wght@0,400;0,700,1,400&family=Annapurna+SIL:wght@400;700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Noto+Serif+Devanagari:wght@100..900&family=Sumana:wght@400;700&display=swap');
-
 :root {
+  /* Color Palette - Royal Ivory & Gold & Saffron */
+  --ivory: #f6efe4;
+  --ivory-2: #fbf6ec;
+  --paper: #fff8ef;
+  --paper-2: #f3e7d3;
+  --gold: #c69b3e;
+  --gold-2: #9d6f22;
+  --gold-3: #e2c06c;
+  --ink: #6a4825;
+  --ink-2: #4b311a;
+  --orange: #dd6a22;
+  --orange-2: #c95716;
+  --orange-3: #ef8b30;
+  --orange-deep: #9c3c0f;
+  
+  /* Shadows & Borders */
+  --shadow: rgba(121, 79, 31, 0.12);
+  --shadow-2: rgba(121, 79, 31, 0.22);
+  --shadow-deep: rgba(0, 0, 0, 0.25);
+  --border: rgba(198, 155, 62, 0.24);
+  --border-soft: rgba(198, 155, 62, 0.12);
+
+  /* Motion Tokens */
+  --ease-divine: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-bounce-soft: cubic-bezier(0.34, 1.4, 0.64, 1);
+  
+  --dur-micro: 200ms;
+  --dur-standard: 380ms;
+  --dur-reveal: 750ms;
+  --dur-hero: 1250ms;
+
+  /* Typography */
   font-family: 'Asar', 'Noto Serif Devanagari', serif;
-  color: #6a4825;
-  background: #e9ddca;
+  color: var(--ink);
+  background: var(--ivory);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-* { box-sizing: border-box; }
-html { overflow-x: hidden; overflow-y: auto; scroll-behavior: smooth; }
-body { min-height: 100%; margin: 0; overflow-x: hidden; overflow-y: visible; }
-button, a { font: inherit; -webkit-tap-highlight-color: transparent; }
-button { cursor: pointer; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-color: var(--ivory);
+  color: var(--ink);
+  width: 100%;
+}
+
+button, a {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
